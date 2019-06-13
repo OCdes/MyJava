@@ -98,7 +98,7 @@ public class ArrayClass {
 		int[] ary3 = {1,2,3,4};
 		System.out.println("ary 与 ary2 是否相等：" + Arrays.equals(ary, ary2));
 		System.out.println("ary2 与 ary3 是否相等：" + Arrays.equals(ary2, ary3));
-		*/
+		
 		//12.Java 数组并集
 		String[] arg1 = {"1", "2", "3"};
 		String[] arg2 = {"4", "5", "6"};
@@ -107,6 +107,7 @@ public class ArrayClass {
 		for (String str : result_union) {
 			System.out.println(str);
 		}
+		*/
 	}
 	private static String[] union(String[] arg1, String[] arg2) {
 		// TODO Auto-generated method stub
