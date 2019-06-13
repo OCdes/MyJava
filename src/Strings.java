@@ -102,7 +102,7 @@ public class Strings {
     	double e = Math.E;
     	System.out.format("%+10f%n", e);
     	System.out.format(Locale.CHINA, "%-10.4f%n%n", e);
-    	*/
+    	
     	//12.Java 连接字符串
     	// 一下演示通过“+”和 StringBuffer.append() 方法来连接字符串
     	String str = "s";
@@ -118,6 +118,7 @@ public class Strings {
     	}
     	System.out.println("连接符“StringBuffer.append()”连的字符串:");
     	System.out.println(result.toString());
+    	*/
     }
     //删除字符串中的某个字符
     /*substring(int beginIndex, int endIndex)==>截取从beginIndex到endIndex位置的字符串；
