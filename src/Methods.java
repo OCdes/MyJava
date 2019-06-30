@@ -3,7 +3,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
 import java.util.List;;
-
+//enum Car {
+//	lamborghini,tata,audi,fiat,honda
+//}
+enum Car {
+	lamborghini(900),tata(2),audi(50),fiat(15),honda(12);
+	private int price;
+	Car(int p) {
+		price = p;
+	}
+	int getPrice() {
+		return price;
+	}
+	
+}
 class MyMethod {
 	int height;
 	MyMethod() {
@@ -95,9 +108,9 @@ public class Methods {
 		//6.Java instanceof关键字用法
 		Object testObject = new ArrayList();
 		displayObjectClass(testObject);
-		*/
+		
 		//7.Java break 关键字用法
-		int[] intArray = {99, 12, 22, 34, 35, 45, 67, 5678, 8990};
+		Integer[] intArray = {99, 12, 22, 34, 35, 45, 67, 5678, 8990};
 		int no = 5678;
 		int i = 0;
 		boolean found = false;
@@ -113,8 +126,73 @@ public class Methods {
 			System.out.println(no + " 元素不再数组中");
 		}
 		//TODO:为什么转成了ArrayList之后，查找元素索引就报错呢
-		ArrayList mIntArray = (ArrayList) Arrays.asList(intArray);
-		System.out.println(no + "元素的索引位置在："+ mIntArray.indexOf(no));
+		//FIXME:指定ArrayList的包装类型后，就可以查找类
+		ArrayList<Integer> mIntArray = new ArrayList<Integer>(Arrays.asList(intArray));
+		System.out.println(no + " 元素的索引位置在："+ mIntArray.indexOf(no));
+	
+		//8.Java continue 关键字
+		StringBuffer searchStr = new StringBuffer("hello how are you");
+		int length = searchStr.length();
+		int count = 0;
+		for (int i = 0; i < length; i ++) {
+			if (searchStr.charAt(i) != 'h') 
+				continue;
+				count++;
+				searchStr.setCharAt(i, 'h');
+		}
+		System.out.println("发现 "+ count + " 个h字符");
+		System.out.println(searchStr);
+		
+		//9.Java 标签Label
+		String strSearch = "This is the string in which you have to search for a substring.";
+		String substring = "substring";
+		boolean found = false;
+		int max = strSearch.length() - substring.length();
+		testbl:
+			for (int i = 0; i <= max; i ++) {
+				int length = substring.length();
+				int j = i;
+				int k = 0;
+				while (length-- != 0) {
+					if (strSearch.charAt(j++) != substring.charAt(k++)) {
+						continue testbl;
+					}
+				}
+				found = true;
+				break testbl;
+			}
+		if (found) {
+			System.out.println("发现字符串。");
+		} else {
+			System.out.println("字符串中没有发现子字符串。");
+		}
+		
+		//10.Java enum和switch语句使用
+		Car c;
+		c = Car.tata;
+		switch(c) {
+		case lamborghini:
+			System.out.println("你的车是 lamborghini!");
+			break;
+		case tata:
+			System.out.println("你的车是 tata!");
+			break;
+		case audi:
+			System.out.println("你的车是 Audi！");
+			break;
+		case fiat:
+			System.out.println("你的车是 fiat！");
+			break;
+		case honda:
+			System.out.println("你的车是 Honda！");
+			break;
+		} 
+		*/
+		//11.Java Enum（枚举）构造函数及方法的使用
+		System.out.println("所有汽车的价格：");
+		for (Car c : Car.values()) {
+			System.out.println(c + " 需要 " + c.getPrice() + "千美元");
+		}
 	}
 	
 	public static void displayObjectClass(Object o) {
