@@ -187,12 +187,14 @@ public class Methods {
 			System.out.println("你的车是 Honda！");
 			break;
 		} 
-		*/
+		
 		//11.Java Enum（枚举）构造函数及方法的使用
 		System.out.println("所有汽车的价格：");
 		for (Car c : Car.values()) {
 			System.out.println(c + " 需要 " + c.getPrice() + "千美元");
 		}
+		*/
+		
 	}
 	
 	public static void displayObjectClass(Object o) {
