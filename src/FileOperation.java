@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Date;
 public class FileOperation {
 	public static void main(String args[]) throws Exception {
 		/*
@@ -38,7 +39,7 @@ public class FileOperation {
 		} catch (Exception e) {
 			
 		}
-		*/
+		
 		//4.Java 将文件内容复制到另一个文件
 		BufferedWriter out1 = new BufferedWriter(new FileWriter("srcfile"));
 		out1.write("string to be copied\n");
@@ -60,5 +61,91 @@ public class FileOperation {
 			System.out.println(str);
 		}
 		in1.close();
+		
+		//5.Java 向文件中追加数据
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter("filename"));
+			out.write("aString1\n");
+			out.close();
+			out = new BufferedWriter(new FileWriter("filename",true));
+			out.write("aString2\n");
+			out.close();
+			BufferedReader in = new BufferedReader(new FileReader("filename"));
+			String str;
+			while ((str = in.readLine()) != null) {
+				System.out.println(str);
+			}
+			in.close();
+			
+		} catch (IOException e) {
+			System.out.println("exception occoured"+e);
+		}
+		
+		//6.Java 创建临时文件
+		File temp = File.createTempFile("testrunoobtmp", ".txt");
+		System.out.println("文件路径："+temp.getAbsolutePath());
+		temp.deleteOnExit();
+		BufferedWriter out = new BufferedWriter(new FileWriter(temp));
+		out.write("aString");
+		System.out.println("临时文件已创建");
+		out.close();
+		
+		//7.Java 修改文件最后的修改日期
+		File fileToChange = new File("/Users/zhejianglijuwangluoyouxiangongsi/Desktop/Test/Java/JavaLearning/destnfile");
+		fileToChange.createNewFile();
+		Date fileTime = new Date(fileToChange.lastModified());
+		System.out.println(fileTime.toString());
+		System.out.println(fileToChange.setLastModified(System.currentTimeMillis()));
+		fileTime = new Date(fileToChange.lastModified());
+		System.out.println(fileTime.toString());
+		
+		//8.Java 获取文件大小
+		long size = getFileSize("/Users/zhejianglijuwangluoyouxiangongsi/Desktop/Test/Java/JavaLearning/destnfile");
+		System.out.println("destnfile.txt 文件大小为:"+size);
+		
+		//9.Java 文件重命名
+		File oldName = new File("/Users/zhejianglijuwangluoyouxiangongsi/Desktop/Test/Java/JavaLearning/destnfile");
+		File newName = new File("/Users/zhejianglijuwangluoyouxiangongsi/Desktop/Test/Java/JavaLearning/destinationFile");
+		if (oldName.renameTo(newName)) {
+			System.out.println("重命名成功");
+		} else {
+			System.out.println("命名失败");
+		}
+		
+		//10.Java 设置文件只读，文件是否存在
+		File file = new File("/Users/zhejianglijuwangluoyouxiangongsi/Desktop/Test/Java/JavaLearning/destinationFile");
+		if (file.exists()) {
+			file.setReadOnly();
+			System.out.println(file.canRead());
+			System.out.println(file.canWrite());
+		} else {
+			System.out.println("文件不存在");
+		}
+		
+		//11.Java 创建文件
+		try {
+			File file = new File("/Users/zhejianglijuwangluoyouxiangongsi/Desktop/Test/Java/JavaLearning/targetFile");
+			if (file.createNewFile()) {
+				System.out.println("文件创建成功");
+			} else {
+				System.out.println("文件已存在");
+			}
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+		*/
+		
+		
+	}
+	/*
+	 * 获取文件size，需要传入文件了路径
+	 */
+	public static long getFileSize(String fileName) {
+		File file = new File(fileName);
+		if (!file.exists() || !file.isFile()) {
+			System.out.println("文件不存在");
+			return -1;
+		}
+		return file.length();
 	}
 }
