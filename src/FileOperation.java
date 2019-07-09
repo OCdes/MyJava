@@ -1,4 +1,5 @@
 import java.io.*;
+//import org.apache.commons.io.FileUtils;
 import java.util.Date;
 public class FileOperation {
 	public static void main(String args[]) throws Exception {
@@ -133,9 +134,11 @@ public class FileOperation {
 		} catch (IOException e) {
 			System.out.println(e);
 		}
+		
+		//12.Java 获取目录大小
+		File file = new File("/Users/zhejianglijuwangluoyouxiangongsi/Desktop/Test/Java/JavaLearning");
+		long size = FileUtils.sizeOfDirectory(file);
 		*/
-		
-		
 	}
 	/*
 	 * 获取文件size，需要传入文件了路径
